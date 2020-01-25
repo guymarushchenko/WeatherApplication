@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CheckBox from './CheckBox/CheckBox';
 import CityCard from './CityCard/CityCard';
-import {myCities} from './myCities.json';
+import { myCities } from './myCities.json';
 import './App.css';
 
 
@@ -20,18 +20,17 @@ class App extends Component {
 
 
   okButtonHandler = async () => {
-
     const newCitiesWithTemp = {};
     for (let cityId of this.selectedCitiesIds) {
       let cityWeatherData = await fetch(process.env.REACT_APP_WEATHER_API + '&units=metric&id=' + cityId);
       let pureCityWeatherData = await cityWeatherData.json();
       newCitiesWithTemp[cityId] = {
-            "name": pureCityWeatherData.name,
-            "temp": Math.round(pureCityWeatherData.main.temp),
-            "icon": pureCityWeatherData.weather[0].icon
-          };
-        }
-        this.setState({shownCitiesWithTemp:newCitiesWithTemp});
+        "name": pureCityWeatherData.name,
+        "temp": Math.round(pureCityWeatherData.main.temp),
+        "icon": pureCityWeatherData.weather[0].icon
+      };
+    }
+    this.setState({ shownCitiesWithTemp: newCitiesWithTemp });
   }
 
 
@@ -61,7 +60,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;
