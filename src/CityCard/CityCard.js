@@ -2,6 +2,7 @@ import React from 'react';
 import './CityCard.css';
 
 
+
 const CityCard = (props) => {
     return (
         <span className="cityCard">
